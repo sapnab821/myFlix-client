@@ -12,8 +12,6 @@ export const MainView = () => {
         fetch("https://sbmovie-flix-81059d891de6.herokuapp.com/movies")
             .then((response) => response.json())
             .then((data) => {
-               // console.log(data);
-               //setMovies(movies);
                 const moviesFromApi = data.map((movie) => {
                     return {
                         _id: movie._id,

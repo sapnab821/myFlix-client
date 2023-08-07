@@ -27178,8 +27178,6 @@ const MainView = ()=>{
     const [selectedMovies, setSelectedMovies] = (0, _react.useState)(null);
     (0, _react.useEffect)(()=>{
         fetch("https://sbmovie-flix-81059d891de6.herokuapp.com/movies").then((response)=>response.json()).then((data)=>{
-            // console.log(data);
-            //setMovies(movies);
             const moviesFromApi = data.map((movie)=>{
                 return {
                     _id: movie._id,
@@ -27201,7 +27199,7 @@ const MainView = ()=>{
         children: "The List is empty!"
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 36,
+        lineNumber: 34,
         columnNumber: 16
     }, undefined);
     if (selectedMovies) return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)((0, _movieView.MovieView), {
@@ -27209,7 +27207,7 @@ const MainView = ()=>{
         onBackClick: ()=>setSelectedMovies(null)
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 43,
+        lineNumber: 41,
         columnNumber: 13
     }, undefined);
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
@@ -27220,12 +27218,12 @@ const MainView = ()=>{
                 }
             }, movie._id, false, {
                 fileName: "src/components/main-view/main-view.jsx",
-                lineNumber: 51,
+                lineNumber: 49,
                 columnNumber: 17
             }, undefined))
     }, void 0, false, {
         fileName: "src/components/main-view/main-view.jsx",
-        lineNumber: 49,
+        lineNumber: 47,
         columnNumber: 9
     }, undefined);
 };
