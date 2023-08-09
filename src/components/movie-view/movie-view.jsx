@@ -1,8 +1,15 @@
+import {Col} from "react-bootstrap";
+import {Row} from "react-bootstrap";
+
 import React from "react";
+
+
 
 
 export const MovieView = ({ movie, onBackClick }) => {
     return (
+        <Row className= "justify-md-content-center">
+        <Col md={8}>
         <div>
             <div>
                 <div>
@@ -28,5 +35,7 @@ export const MovieView = ({ movie, onBackClick }) => {
             <button onClick={onBackClick}>Back</button>
     
         </div>
+        </Col>
+        </Row>
     );
 };
