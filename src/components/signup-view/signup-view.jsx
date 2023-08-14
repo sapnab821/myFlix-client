@@ -4,6 +4,8 @@ import { Button } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 import { Col } from "react-bootstrap";
 
+
+
 export const SignupView = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -26,6 +28,7 @@ export const SignupView = () => {
             headers: {
                 "Content-type": "application/json"
             }
+
         }).then((response) => {
             if (response.ok) {
                 alert("Signup successful!")
@@ -74,4 +77,5 @@ export const SignupView = () => {
         </Form>
         </Col>
     );
+            
 };
