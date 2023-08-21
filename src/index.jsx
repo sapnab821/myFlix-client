@@ -1,14 +1,18 @@
 import { createRoot } from "react-dom/client";
 
 import { MainView } from "./components/main-view/main-view";
+//import { Container } from "react-router-dom";
 
+//import "bootstrap/dist/css/bootstrap.min.css";
 // Import statement to indicate that you need to bundle `./index.scss`
 import "./index.scss";
 
 // Main component (will eventually use all the others)
 const MyFlixApplication = () => {
   return (
+   //<Container fluid className="m-0 p-0">
     <MainView />
+   //</Container>
   );
 };
 

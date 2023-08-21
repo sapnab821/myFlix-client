@@ -40,7 +40,7 @@ export const SignupView = () => {
 
     return (
         <Col md={5}>
-        <Form onSubmit={handleSubmit}>
+        <Form className="form" onSubmit={handleSubmit}>
             <Form.Group>
                 <Form.Label>Username:</Form.Label>
                 <Form.Control type="text"
