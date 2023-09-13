@@ -1,8 +1,18 @@
 
 import { Nav, Navbar, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { Form } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
-export const NavigationBar = ({ user, onLoggedOut }) => {
+export const NavigationBar = ({ movies, user, onLoggedOut }) => {
+
+    //const searchBar = movies.filter(m => m.includes(m.Title));
+    
+    const searchBar = () => {
+        return movies.filter(m => movies.includes(m.Title))
+
+    }
+
     return (
       <Navbar bg="light" expand="lg">
         <Container>
@@ -39,6 +49,21 @@ export const NavigationBar = ({ user, onLoggedOut }) => {
   };
 
 /*
+
+<Form className="d-flex">
+                  <Form.Control
+                    type="search"
+                    placeholder="Search"
+                    className="me-2"
+                     aria-label="Search"
+                    />
+                    <Nav.Button>
+                        Search
+                    </Nav.Button>
+
+                  </Form> 
+
+
 export const NavigationBar = ([user, onLoggedOut]) => {
     return(
         <Navbar bg = "light" expand="lg">
