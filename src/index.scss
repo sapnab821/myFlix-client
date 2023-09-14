@@ -1,4 +1,8 @@
-$primary: DarkBlue;
-$body-bg: rgb(211, 239, 248);
+*{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+$primary: darkblue;
+$body-bg: rgb(199, 236, 250);
+
 
 @import '~bootstrap/scss/bootstrap.scss';

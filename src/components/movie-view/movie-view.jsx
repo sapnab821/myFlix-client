@@ -10,16 +10,13 @@ import { Card } from "react-bootstrap";
 import React from "react";
 
 
-export const MovieView = ({ user, movies, token }) => {
+export const MovieView = ({ setUser, user, movies, token }) => {
     const { Title } = useParams();
     const movie = movies.find((m) => m.Title === Title);
 
-    const [favorites, setFavorites] = useState(user.FavoriteMovies);
-    console.log("==favorites==", favorites)
-    const isInFavoritesList = () => {
-        if (favorites.find(fav => fav === movie._id)) return true
-        return false
-    }
+
+    const [isFavorite, setIsFavorite] = useState(user.FavoriteMovies.includes(movie._id))
+
 
     const addFavoriteMovie = () => {
         fetch("https://sbmovie-flix-81059d891de6.herokuapp.com/users/" + user.Username + "/movies/" + movie._id, {
@@ -33,37 +30,35 @@ export const MovieView = ({ user, movies, token }) => {
 
             .then((data) => {
                 localStorage.setItem("user", JSON.stringify(data));
-                setFavorites(data.FavoriteMovies);
+                setUser(user)
+                setIsFavorite(true)
                 alert("Movie added!")
             })
     }
 
     const removeFavoriteMovie = () => {
-     fetch("https://sbmovie-flix-81059d891de6.herokuapp.com/users/" + user.Username + "/movies/" + movie._id, {
+        data = fetch("https://sbmovie-flix-81059d891de6.herokuapp.com/users/" + user.Username + "/movies/" + movie._id, {
 
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${token}`
             },
-
-        })
-        
-        
-        .then((response) => 
-        response.json())
+        }).then((response) =>
+            response.json())
             .then((data) => {
-                setFavorites(data.FavoriteMovies)
                 localStorage.setItem("user", JSON.stringify(data))
-                //alert("movie removed!"
+                setUser(data)
+                setIsFavorite(false)
+                alert("movie removed!")
             }).catch((e) => {
                 alert("Something went wrong!");
             });
-        }
-    
+    }
+
 
     return (
-        <Card style={{ width: '55rem' }} >
+        <Card bg={"light"} border="dark" style={{ width: '55rem' }} >
             <Row>
                 <Col><Card.Img variant="top" src={movie.imageURL} /></Col>
                 <Col>
@@ -78,7 +73,7 @@ export const MovieView = ({ user, movies, token }) => {
                         <Row>
                             <Col>
                                 {
-                                    isInFavoritesList() ? <Button variant="danger" onClick={removeFavoriteMovie}>Remove Favorite</Button> : <Button variant = "success" onClick={addFavoriteMovie}>Add to Favorites</Button>
+                                    isFavorite ? <Button variant="danger" onClick={removeFavoriteMovie}>Remove Favorite</Button> : <Button variant="success" onClick={addFavoriteMovie}>Add Favorite</Button>
                                 }
                             </Col>
                             <Col>
@@ -86,6 +81,7 @@ export const MovieView = ({ user, movies, token }) => {
                                     <Button className="back-button">Home</Button>
                                 </Link>
                             </Col>
+
                         </Row>
                     </Card.Body>
                 </Col>
@@ -94,102 +90,4 @@ export const MovieView = ({ user, movies, token }) => {
 
     );
 };
-
-/*
- }).then((response) => 
-                response.json())
-                   
-                        if (response.ok){
-                            
-                            setFavorites(user.FavoriteMovies)
-                            localStorage.setItem("user", JSON.stringify(user));
-                            
-                            alert("movie removed!")
-                            
-                        }
-                        else{alert("movie not removed!")
-                        
-                    }
-                }
-
-
-        <Row className= "justify-md-content-center">
-        <Col md={8}>
-        <div>
-            <div>
-                <div>
-                <img src={movie?.imageURL} alt/>
-                </div>
-            </div> 
-            <div>
-            <span>Title: </span>
-                <span>{movie.Title}</span>
-            </div>
-            <div>
-                <span>Genre: </span>
-                <span>{movie.Genre.Name}</span>
-            </div>
-            <div>
-                <span>Description: </span>
-                <span>{movie.Description}</span>
-            </div>
-            <div>
-                <span>Director: </span>
-                <span>{movie.Director.Name}</span>
-            </div>
-            <Link to ={ '/'}>
-            <Button className="back-button">Back</Button>
-            </Link>
-        </div>
-        </Col>
-        </Row>*/
-
-/*
-import { useParams } from "react-router";
-import {Link} from "react-router-dom";
-import {Col} from "react-bootstrap";
-import {Row} from "react-bootstrap";
-
-import React from "react";
-
-
-
-
-export const MovieView = ({ movies }) => {
-    const {movieTitle} = useParams();
-    const movie = movies.find((movie) => movie.title === movieTitle);
-    return (
-        <Row className= "justify-md-content-center">
-        <Col md={8}>
-        <div>
-            <div>
-                <div>
-                <img src={movie.imageURL} alt/>
-                </div>
-            </div> 
-            <div>
-            <span>Title: </span>
-                <span>{movie.Title}</span>
-            </div>
-            <div>
-                <span>Genre: </span>
-                <span>{movie.Genre.Name}</span>
-            </div>
-            <div>
-                <span>Description: </span>
-                <span>{movie.Description}</span>
-            </div>
-            <div>
-                <span>Director: </span>
-                <span>{movie.Director.Name}</span>
-            </div>
-            <Link to ={ '/'}>
-            <button className="back-button">Back</button>
-            </Link>
-    
-        </div>
-        </Col>
-        </Row>
-    );
-}; */
 
