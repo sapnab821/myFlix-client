@@ -15,10 +15,10 @@ export const NavigationBar = ({ movies, user, onLoggedOut }) => {
                     <Nav className="me-auto">
                         {!user && (
                             <>
-                                <Nav.Link className='nav-text font-style' href="/login">
+                                <Nav.Link as={Link} to="/login">
                                     Login
                                 </Nav.Link>
-                                <Nav.Link className='nav-text font-style' href="/signup">
+                                <Nav.Link as={Link} to="/signup">
                                     Signup
                                 </Nav.Link>
                             </>
