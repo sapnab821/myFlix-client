@@ -8,7 +8,7 @@ import { Row } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { Card } from "react-bootstrap";
 
-import React from "react";
+
 
 
 export const MovieView = ({ setUser, user, movies, token }) => {
